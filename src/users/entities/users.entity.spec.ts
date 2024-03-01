@@ -1,0 +1,20 @@
+import { UserEntity } from './users.entity';
+
+describe('UsersEntity', () => {
+  it('Espero criar um usuario com nome, email, cpf, celuar e senha', () => {
+    const userToCreate = {
+      name: 'Vagner',
+      email: 'vagner.test@mail.com',
+      cpf: '492.331.111.332-XX',
+      mobile: '+55223331122321',
+    };
+
+    const newUserCreated = UserEntity.create(userToCreate);
+
+    const newUserJSON = newUserCreated.toJSON();
+
+    expect(newUserJSON).toMatchObject(userToCreate);
+    expect(newUserJSON?.id).not.toBeNull();
+    expect(newUserJSON?.password).not.toBeNull();
+  });
+});
