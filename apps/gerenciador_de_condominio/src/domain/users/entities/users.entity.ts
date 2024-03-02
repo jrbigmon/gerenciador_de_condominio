@@ -44,6 +44,8 @@ export class UserEntity extends AggregateRoot {
 
     userCreated.addEvent(new UserCreatedEvent(userCreated));
 
+    delete userCreated?.password;
+
     return userCreated;
   }
 
@@ -55,7 +57,6 @@ export class UserEntity extends AggregateRoot {
       cpf: this.cpf,
       mobile: this.mobile,
       condominiumId: this.condominiumId,
-      password: this.password,
     };
   }
 }

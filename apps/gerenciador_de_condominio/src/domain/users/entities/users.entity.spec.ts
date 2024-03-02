@@ -17,6 +17,5 @@ describe('UsersEntity', () => {
 
     expect(newUserJSON).toMatchObject(userToCreate);
     expect(newUserJSON?.id).not.toBeNull();
-    expect(newUserJSON?.password).not.toBeNull();
   });
 });
