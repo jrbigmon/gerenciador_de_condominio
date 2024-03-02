@@ -4,4 +4,5 @@ export interface UserInterface {
   email: string;
   cpf: string;
   mobile: string;
+  condominiumId: string;
 }
