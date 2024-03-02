@@ -15,7 +15,11 @@ export class UserService {
     return userCreated;
   }
 
-  public async list(): Promise<UserEntity[]> {
+  public async findAll(): Promise<UserEntity[]> {
     return this.userRepository.findAll();
+  }
+
+  public async findById(id: string): Promise<UserEntity> {
+    return this.userRepository.findById(id);
   }
 }

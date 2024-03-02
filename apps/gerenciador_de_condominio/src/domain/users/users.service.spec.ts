@@ -61,7 +61,23 @@ describe('UsersService', () => {
     };
 
     await userService.create(userPayload);
-    const usersInMemory = await userService.list();
+    const usersInMemory = await userService.findAll();
     expect(usersInMemory).toHaveLength(1);
+  });
+
+  it('espero criar um usuario e busca-lo pelo id', async () => {
+    const userPayload: UserCreateDto = {
+      name: 'vagner',
+      cpf: '478233211332',
+      mobile: '977223321231',
+      condominiumId: '321232313',
+      email: 'vagner@mail.com',
+      password: '123321213',
+    };
+
+    const userCreated = await userService.create(userPayload);
+    const userInMemory = await userService.findById(userCreated?.toJSON().id);
+    expect(userInMemory).toBeDefined();
+    expect(userInMemory.toJSON().id).toBe(userCreated?.toJSON().id);
   });
 });
