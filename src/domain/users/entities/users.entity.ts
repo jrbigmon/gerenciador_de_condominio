@@ -1,5 +1,5 @@
-import { Password } from '../../utils/password';
-import { Utils } from '../../utils/utils';
+import { Password } from '../../../utils/password';
+import { Utils } from '../../../utils/utils';
 import { UserInterface } from './users.interface';
 
 export class UserEntity {
