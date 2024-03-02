@@ -25,7 +25,7 @@ export class UserEntity extends AggregateRoot {
     super();
     this.name = name;
     this.email = email;
-    this.cpf = cpf;
+    this.cpf = Utils.removeSpecialChars(cpf);
     this.mobile = mobile;
     this.condominiumId = condominiumId;
     this.password =
