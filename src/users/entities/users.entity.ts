@@ -1,5 +1,6 @@
 import { Password } from '../../utils/password';
 import { Utils } from '../../utils/utils';
+import { UserInterface } from './users.interface';
 
 export class UserEntity {
   private name: string;
@@ -31,12 +32,7 @@ export class UserEntity {
     email,
     cpf,
     mobile,
-  }: {
-    name: string;
-    email: string;
-    cpf: string;
-    mobile: string;
-  }): UserEntity {
+  }: UserInterface): UserEntity {
     const userCreated = new UserEntity(name, email, cpf, mobile);
 
     return userCreated;
