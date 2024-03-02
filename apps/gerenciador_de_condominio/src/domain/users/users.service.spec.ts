@@ -1,12 +1,13 @@
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserEntity } from './entities/users.entity';
+import { UserInMemoryRepository } from './entities/users.in.memory.repository';
 import { UserService } from './users.service';
 
 describe('UsersService', () => {
   let userService: UserService;
 
   beforeEach(() => {
-    userService = new UserService();
+    userService = new UserService(new UserInMemoryRepository());
   });
 
   it('espero criar um usuario e retornar a entidade userEntity', async () => {
@@ -47,5 +48,20 @@ describe('UsersService', () => {
     await userService.create(userPayload);
     expect(spyUserEntity).toBeCalled();
     expect(spyUserEntity).toBeCalledTimes(1);
+  });
+
+  it('espero criar um usuario e a lista de usuarios ter o comprimento 1', async () => {
+    const userPayload: UserCreateDto = {
+      name: 'vagner',
+      cpf: '478233211332',
+      mobile: '977223321231',
+      condominiumId: '321232313',
+      email: 'vagner@mail.com',
+      password: '123321213',
+    };
+
+    await userService.create(userPayload);
+    const usersInMemory = await userService.list();
+    expect(usersInMemory).toHaveLength(1);
   });
 });
