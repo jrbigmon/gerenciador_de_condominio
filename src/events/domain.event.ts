@@ -1,4 +1,4 @@
-export class EventHandle {
+export class DomainEvent {
   public readonly emittedDate: Date;
   constructor(
     public readonly version: string,

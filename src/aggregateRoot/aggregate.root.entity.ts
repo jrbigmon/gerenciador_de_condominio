@@ -1,7 +1,7 @@
-import { EventHandle } from '../events/event.handle';
+import { DomainEvent } from '../events/domain.event';
 
 export abstract class AggregateRootEntity {
-  public async emitEvent(eventHandle: EventHandle) {
+  public async emitEvent(eventHandle: DomainEvent) {
     console.log(
       'event: ',
       eventHandle.eventName,
