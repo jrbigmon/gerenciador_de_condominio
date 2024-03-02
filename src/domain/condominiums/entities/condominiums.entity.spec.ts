@@ -1,4 +1,4 @@
-import { CondominiumEntity } from './condominiuns.entity';
+import { CondominiumEntity } from './condominiums.entity';
 
 describe('CondominiumEntity', () => {
   it('espero criar um condominio com apartamentos e torres', () => {
