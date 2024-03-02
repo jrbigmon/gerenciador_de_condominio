@@ -1,0 +1,15 @@
+### Create user
+POST http://localhost:3000/api/users
+content-type: application/json
+
+{
+  "name": "vagner",
+  "email": "vagner.junior@mail.com",
+  "cpf": "472239-23321.12",
+  "mobile": "22199922332113",
+  "password": "vagner123",
+  "condominiumId": "123321"
+}
+
+### List user
+GET http://localhost:3000/api/users
