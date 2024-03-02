@@ -1,8 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/gerenciador_de_condominio/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/gerenciador_de_condominio/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/gerenciador_de_condominio",
+  "projects": {
+    "gerenciador_de_condominio": {
+      "type": "application",
+      "root": "apps/gerenciador_de_condominio",
+      "entryFile": "main",
+      "sourceRoot": "apps/gerenciador_de_condominio/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/gerenciador_de_condominio/tsconfig.app.json"
+      }
+    },
+    "mailer": {
+      "type": "application",
+      "root": "apps/mailer",
+      "entryFile": "main",
+      "sourceRoot": "apps/mailer/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/mailer/tsconfig.app.json"
+      }
+    }
   }
 }
