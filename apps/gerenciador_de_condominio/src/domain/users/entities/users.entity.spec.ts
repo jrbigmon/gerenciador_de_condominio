@@ -15,7 +15,10 @@ describe('UsersEntity', () => {
 
     const newUserJSON = newUserCreated.toJSON();
 
-    expect(newUserJSON).toMatchObject(userToCreate);
+    expect(newUserJSON).toMatchObject({
+      ...userToCreate,
+      cpf: '492331111332XX',
+    });
     expect(newUserJSON?.id).not.toBeNull();
   });
 
