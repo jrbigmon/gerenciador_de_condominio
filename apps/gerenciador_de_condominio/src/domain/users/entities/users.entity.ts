@@ -1,10 +1,10 @@
-import { AggregateRootEntity } from '../../../aggregateRoot/aggregate.root.entity';
 import { UserCreatedEvent } from '../events/user.created.event';
 import { Password } from '../../../utils/password';
 import { Utils } from '../../../utils/utils';
 import { UserInterface } from './users.interface';
+import { AggregateRoot } from '../../../../../../libs/@shared/src/domain/aggregate-root';
 
-export class UserEntity extends AggregateRootEntity {
+export class UserEntity extends AggregateRoot {
   private name: string;
   private email: string;
   private cpf: string;
@@ -42,7 +42,7 @@ export class UserEntity extends AggregateRootEntity {
   }: UserInterface): UserEntity {
     const userCreated = new UserEntity(name, email, cpf, mobile, condominiumId);
 
-    userCreated.emitEvent(new UserCreatedEvent(userCreated));
+    userCreated.addEvent(new UserCreatedEvent(userCreated));
 
     return userCreated;
   }

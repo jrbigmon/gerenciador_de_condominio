@@ -1,6 +1,6 @@
 import { UserEntity } from '../entities/users.entity';
 import { Utils } from '../../../utils/utils';
-import { DomainEvent } from '../../../share/domain.event';
+import { DomainEvent } from '../../../../../../libs/@shared/src/domain/domain.event';
 
 export class UserCreatedEvent implements DomainEvent {
   public readonly eventName = 'user-created';

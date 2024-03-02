@@ -1,6 +1,6 @@
 import { CondominiumEntity } from '../entities/condominiums.entity';
 import { Utils } from '../../../utils/utils';
-import { DomainEvent } from '../../../share/domain.event';
+import { DomainEvent } from '../../../../../../libs/@shared/src/domain/domain.event';
 
 export class CondominiumCreatedEvent implements DomainEvent {
   public readonly eventName = 'condominium-created';

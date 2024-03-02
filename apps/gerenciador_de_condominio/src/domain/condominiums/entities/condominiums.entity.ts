@@ -1,10 +1,10 @@
-import { AggregateRootEntity } from '../../../aggregateRoot/aggregate.root.entity';
 import { CondominiumCreatedEvent } from '../events/condominium.created.event';
 import { Utils } from '../../../utils/utils';
 import { TowerInterface } from '../../towers/entities/towers.interface';
 import { CondominiumInterface } from './condominiums.interface';
+import { AggregateRoot } from '../../../../../../libs/@shared/src/domain/aggregate-root';
 
-export class CondominiumEntity extends AggregateRootEntity {
+export class CondominiumEntity extends AggregateRoot {
   private name: string;
   private id: string;
   private towers: TowerInterface[];
@@ -22,7 +22,7 @@ export class CondominiumEntity extends AggregateRootEntity {
   }: CondominiumInterface): CondominiumEntity {
     const condominiumCreated = new CondominiumEntity(name, towers);
 
-    condominiumCreated.emitEvent(
+    condominiumCreated.addEvent(
       new CondominiumCreatedEvent(condominiumCreated),
     );
 
