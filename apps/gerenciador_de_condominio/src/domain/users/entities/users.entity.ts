@@ -59,4 +59,12 @@ export class UserEntity extends AggregateRoot {
       condominiumId: this.condominiumId,
     };
   }
+
+  public update({
+    name,
+    mobile,
+  }: Partial<Pick<UserInterface, 'name' | 'mobile'>>) {
+    this.name = name;
+    this.mobile = mobile;
+  }
 }

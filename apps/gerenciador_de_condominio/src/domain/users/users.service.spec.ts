@@ -80,4 +80,26 @@ describe('UsersService', () => {
     expect(userInMemory).toBeDefined();
     expect(userInMemory.toJSON().id).toBe(userCreated?.toJSON().id);
   });
+
+  it('espero criar e atualizar o usuario criado', async () => {
+    const userPayload: UserCreateDto = {
+      name: 'vagner',
+      cpf: '478233211332',
+      mobile: '977223321231',
+      condominiumId: '321232313',
+      email: 'vagner@mail.com',
+      password: '123321213',
+    };
+
+    const userCreated = await userService.create(userPayload);
+
+    const userUpdated = await userService.update(userCreated?.toJSON()?.id, {
+      name: 'Junior',
+      mobile: '111111111111',
+    });
+
+    expect(userUpdated).toBeDefined();
+    expect(userUpdated?.toJSON()?.name).toBe('Junior');
+    expect(userUpdated?.toJSON()?.mobile).toBe('111111111111');
+  });
 });
