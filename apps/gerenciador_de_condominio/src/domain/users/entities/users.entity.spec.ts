@@ -37,4 +37,21 @@ describe('UsersEntity', () => {
 
     expect(newUserJSON?.cpf).not.toBe(userToCreate?.cpf);
   });
+
+  it('espero conseguir atualizar o campo de name e mobile do usuario', () => {
+    const userToCreate: UserInterface = {
+      name: 'Vagner',
+      email: 'vagner.test@mail.com',
+      cpf: '492.331.111.332-XX',
+      mobile: '+55223331122321',
+      condominiumId: '10',
+    };
+
+    const newUserCreated = UserEntity.create(userToCreate);
+
+    newUserCreated.update({ name: 'Junior', mobile: '1111111111' });
+
+    expect(newUserCreated.toJSON().name).toBe('Junior');
+    expect(newUserCreated.toJSON().mobile).toBe('1111111111');
+  });
 });

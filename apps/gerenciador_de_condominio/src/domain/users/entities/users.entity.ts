@@ -3,6 +3,7 @@ import { Password } from '../../../utils/password';
 import { Utils } from '../../../utils/utils';
 import { UserInterface } from './users.interface';
 import { AggregateRoot } from '../../../../../../libs/@shared/src/domain/aggregate-root';
+import { UserUpdatedEvent } from '../events/user.updated.event';
 
 export class UserEntity extends AggregateRoot {
   private name: string;
@@ -66,5 +67,7 @@ export class UserEntity extends AggregateRoot {
   }: Partial<Pick<UserInterface, 'name' | 'mobile'>>) {
     this.name = name;
     this.mobile = mobile;
+
+    this.addEvent(new UserUpdatedEvent(this));
   }
 }
