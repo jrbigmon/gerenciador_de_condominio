@@ -1,5 +1,5 @@
 import { AggregateRootEntity } from '../../../aggregateRoot/aggregate.root.entity';
-import { CondominiumEvent } from '../../../events/condominiums.event';
+import { CondominiumCreatedEvent } from '../events/condominium.created.event';
 import { Utils } from '../../../utils/utils';
 import { TowerInterface } from '../../towers/entities/towers.interface';
 import { CondominiumInterface } from './condominiums.interface';
@@ -23,7 +23,7 @@ export class CondominiumEntity extends AggregateRootEntity {
     const condominiumCreated = new CondominiumEntity(name, towers);
 
     condominiumCreated.emitEvent(
-      new CondominiumEvent('condominium-created', condominiumCreated),
+      new CondominiumCreatedEvent(condominiumCreated),
     );
 
     return condominiumCreated;

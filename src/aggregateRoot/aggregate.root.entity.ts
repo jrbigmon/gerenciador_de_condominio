@@ -1,4 +1,4 @@
-import { DomainEvent } from '../events/domain.event';
+import { DomainEvent } from '../share/domain.event';
 
 export abstract class AggregateRootEntity {
   public async emitEvent(eventHandle: DomainEvent) {

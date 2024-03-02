@@ -1,5 +1,5 @@
 import { AggregateRootEntity } from '../../../aggregateRoot/aggregate.root.entity';
-import { UserEvent } from '../../../events/users.event';
+import { UserCreatedEvent } from '../events/user.created.event';
 import { Password } from '../../../utils/password';
 import { Utils } from '../../../utils/utils';
 import { UserInterface } from './users.interface';
@@ -42,7 +42,7 @@ export class UserEntity extends AggregateRootEntity {
   }: UserInterface): UserEntity {
     const userCreated = new UserEntity(name, email, cpf, mobile, condominiumId);
 
-    userCreated.emitEvent(new UserEvent('user-created', userCreated));
+    userCreated.emitEvent(new UserCreatedEvent(userCreated));
 
     return userCreated;
   }
