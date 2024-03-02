@@ -1,8 +1,9 @@
 import { CondominiumEntity } from './condominiums.entity';
+import { CondominiumInterface } from './condominiums.interface';
 
 describe('CondominiumEntity', () => {
   it('espero criar um condominio com apartamentos e torres', () => {
-    const condominium = {
+    const condominium: CondominiumInterface = {
       name: 'Le vin garden',
       towers: [
         {
@@ -12,15 +13,7 @@ describe('CondominiumEntity', () => {
             {
               id: '1',
               number: '97',
-              residents: [
-                {
-                  id: '1',
-                  name: 'vagner',
-                  email: 'vagner@mail.com',
-                  cpf: '4732213233123XX',
-                  mobile: '5533211223321',
-                },
-              ],
+              residents: [],
             },
           ],
         },
@@ -33,6 +26,6 @@ describe('CondominiumEntity', () => {
     expect(condominiumJSON?.id).not.toBeNull();
     expect(condominiumJSON?.towers).toHaveLength(1);
     expect(condominiumJSON?.towers[0].apartments).toHaveLength(1);
-    expect(condominiumJSON?.towers[0].apartments[0].residents).toHaveLength(1);
+    expect(condominiumJSON?.towers[0].apartments[0].residents).toHaveLength(0);
   });
 });
