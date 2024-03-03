@@ -1,13 +1,17 @@
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserEntity } from './entities/users.entity';
 import { UserInMemoryRepository } from './entities/users.in.memory.repository';
+import { UserRepositoryInterface } from './entities/users.repository.interface';
 import { UserService } from './users.service';
 
 describe('UsersService', () => {
   let userService: UserService;
+  let userRepository: UserRepositoryInterface;
 
   beforeEach(() => {
-    userService = new UserService(new UserInMemoryRepository());
+    jest.clearAllMocks();
+    userRepository = new UserInMemoryRepository();
+    userService = new UserService(userRepository);
   });
 
   it('espero criar um usuario e retornar a entidade userEntity', async () => {
@@ -101,5 +105,35 @@ describe('UsersService', () => {
     expect(userUpdated).toBeDefined();
     expect(userUpdated?.toJSON()?.name).toBe('Junior');
     expect(userUpdated?.toJSON()?.mobile).toBe('111111111111');
+  });
+
+  it('espero atualizar um usuario e o metodo addEvent ser invocado', async () => {
+    const userEntity = new UserEntity(
+      'Vagner',
+      'vagner.email@mail.com',
+      '4222132313',
+      '55111113333',
+      '123',
+      '321',
+      '10',
+    );
+
+    jest.spyOn(userRepository, 'findById').mockImplementation(async (id) => {
+      if (id === '10') {
+        return userEntity;
+      }
+    });
+
+    const spyUserEntity = jest.spyOn(userEntity, 'addEvent');
+    const userUpdated = await userService.update('10', {
+      name: 'Junior',
+      mobile: '333333333',
+    });
+
+    expect(userUpdated?.toJSON()?.id).toBe('10');
+    expect(userUpdated?.toJSON()?.name).toBe('Junior');
+    expect(userUpdated?.toJSON()?.mobile).toBe('333333333');
+    expect(spyUserEntity).toBeCalled();
+    expect(spyUserEntity).toBeCalledTimes(1);
   });
 });
